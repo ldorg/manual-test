@@ -33,9 +33,11 @@ jobs:
           type: string
           description: Provide details
   package:
-    - name: Test outputs
-      uses: docker://golang:1.20.3-alpine3.17
-      shell: sh
-      run: |
-        echo "${{fromJSON(needs.approval.outputs.approvalInputValues).success}}"
-        echo "${{fromJSON(needs.approval.outputs.approvalInputValues).details}}"
+    needs: approval
+    steps:
+      - name: Test outputs
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "${{fromJSON(needs.approval.outputs.approvalInputValues).success}}"
+          echo "${{fromJSON(needs.approval.outputs.approvalInputValues).details}}"
