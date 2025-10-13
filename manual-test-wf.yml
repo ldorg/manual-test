@@ -1,0 +1,41 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: manual-test
+description: "Run and track manual tests"
+
+on:
+  workflow_call:
+    inputs:
+      instructions:
+        type: string
+        required: true
+      assignee:
+        type: string
+        required: true
+
+jobs:
+  approval:
+    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+    id: approval
+    timeout-minutes: 1440
+    with:
+      instructions: ${{ inputs.instructions }}
+      disallowLaunchByUser: false
+      approvers: ${{ assignee }}
+      notifyAllEligibleUsers: false
+      approvalInputs: |
+        success:
+          type: boolean
+          default: false
+          required: true
+          description: Did it succeed?
+        details:
+          type: string
+          description: Provide details
+  package:
+    - name: Test outputs
+      uses: docker://golang:1.20.3-alpine3.17
+      shell: sh
+      run: |
+        echo "${{fromJSON(needs.approval.outputs.approvalInputValues).success}}"
+        echo "${{fromJSON(needs.approval.outputs.approvalInputValues).details}}"
