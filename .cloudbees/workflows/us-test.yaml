@@ -8,7 +8,7 @@ jobs:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     timeout-minutes: 1440
     with:
-      instructions: ${{ inputs.instructions }}
+      instructions: "Testing top level approval before nested"
       disallowLaunchByUser: false
       notifyAllEligibleUsers: false
   caller:
