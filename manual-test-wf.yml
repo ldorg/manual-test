@@ -16,7 +16,6 @@ on:
 jobs:
   approval:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
-    id: approval
     timeout-minutes: 1440
     with:
       instructions: ${{ inputs.instructions }}
