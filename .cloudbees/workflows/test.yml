@@ -6,3 +6,6 @@ on:
 jobs:
   caller:
     uses: ldorg/manual-test/manual-test-wf.yml
+    with:
+      instructions: "Simon says..."
+      assignee: ""
