@@ -5,4 +5,4 @@ on:
   workflow_dispatch:
 jobs:
   caller:
-    uses: ../../manual-test-wf.yml
+    uses: ldorg/manual-test/manual-test-wf.yml
