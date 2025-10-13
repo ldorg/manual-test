@@ -5,7 +5,6 @@ on:
   workflow_dispatch:
 jobs:
   approval-here:
-    approval:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     timeout-minutes: 1440
     with:
