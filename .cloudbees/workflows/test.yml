@@ -8,4 +8,4 @@ jobs:
     uses: ldorg/manual-test/manual-test-wf.yml
     with:
       instructions: "Simon says..."
-      assignee: ""
+      assignee: "Demoers"
