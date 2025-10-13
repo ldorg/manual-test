@@ -9,7 +9,9 @@ on:
         type: string
         required: true
       assignee:
-        type: string
+        type: choice
+        options:
+          - Demoers
         required: true
 
 jobs:
@@ -19,7 +21,7 @@ jobs:
     with:
       instructions: ${{ inputs.instructions }}
       disallowLaunchByUser: false
-      approvers: ${{ assignee }}
+      approvers: ${{ inputs.assignee }}
       notifyAllEligibleUsers: false
       approvalInputs: |
         success:
