@@ -1,7 +1,6 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: manual-test
-description: "Run and track manual tests"
 
 on:
   workflow_call:
