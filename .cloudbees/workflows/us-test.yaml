@@ -3,6 +3,7 @@ kind: workflow
 name: us-test
 on:
   workflow_dispatch:
+
 jobs:
   approval-here:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
@@ -16,4 +17,4 @@ jobs:
     uses: ldorg/manual-test/manual-test-wf.yml
     with:
       instructions: "Simon says..."
-      assignee: "Demoers"
+      assignee: ""
