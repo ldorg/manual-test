@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: us-test2
+on:
+  workflow_dispatch:
+
+jobs:
+  approval-here:
+    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+    timeout-minutes: 1440
+    with:
+      instructions: "Testing top level approval before nested"
+      disallowLaunchByUser: false
+      notifyAllEligibleUsers: false
+  caller:
+    needs: approval-here
+    uses: ldorg/manual-test/manual-test-wf.yml
+    with:
+      instructions: "Simon says..."
+      assignee: "Demoers"
+
